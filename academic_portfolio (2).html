@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subhajit Halder — Academic Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ═══════════════════════════════════════
+   DESIGN SYSTEM — LIGHT / DARK
+═══════════════════════════════════════ */
+:root {
+  /* Light mode - calm, warm neutrals (easy on eyes) */
+  --primary:      #1a7a5e;
+  --primary-d:    #155f49;
+  --accent:       #0f5c46;
+  --cyan:         #2196a3;
+  --cyan-d:       #1a7a85;
+  --amber:        #b57e10;
+  --amber1:       #9a6b0a;
+
+  --bg:           #f4f1eb;
+  --bg2:          #faf8f4;
+  --bg3:          #ece8df;
+  --border:       rgba(26,122,94,0.1);
+  --border2:      rgba(26,122,94,0.2);
+  --text:         #1c1c1c;
+  --muted:        #5a5a5a;
+  --muted2:       #3d3d3d;
+  --nav-bg:       rgba(244,241,235,0.92);
+  --shadow:       rgba(0,0,0,0.08);
+  --shadow-md:    rgba(26,122,94,0.1);
+  --grad:         linear-gradient(135deg, #1a7a5e, #0f5c46);
+  --grad-cyan:    linear-gradient(135deg, #2196a3, #1a7a85);
+  --card-bg:      rgba(250,248,244,0.7);
+  --card-border:  rgba(200,190,170,0.5);
+  --nav-h:        72px;
+  --radius:       14px;
+  --radius-lg:    22px;
+}
+
+[data-mode="dark"] {
+  --primary:      #06b6d4;
+  --primary-d:    #0891b2;
+  --accent:       #0d9488;
+  --bg:           #0d121c;
+  --bg2:          #10192a;
+  --bg3:          #1a243a;
+  --border:       rgba(6,182,212,0.12);
+  --border2:      rgba(6,182,212,0.28);
+  --text:         #f1f5f9;
+  --muted:        #94a3b8;
+  --muted2:       #cbd5e1;
+  --nav-bg:       rgba(13,18,28,0.7);
+  --shadow:       rgba(0,0,0,0.35);
+  --shadow-md:    rgba(6,182,212,0.15);
+  --grad:         linear-gradient(135deg, #06b6d4, #0d9488);
+  --grad-cyan:    linear-gradient(135deg, #06b6d4, #0d9488);
+  --card-bg:      rgba(17,24,39,0.45);
+  --card-border:  rgba(255,255,255,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+[data-mode="light"] body {
+  background: linear-gradient(135deg, #f4f1eb, #ece8df, #e5dfd3);
+  background-attachment: fixed;
+}
+
+[data-mode="dark"] body {
+  background: linear-gradient(135deg, #0d121c, #10192a, #1a243a);
+  background-attachment: fixed;
+}
+
+/* ═══════════════════════
+   NAVIGATION
+═══════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  z-index: 100;
+  background: var(--nav-bg);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-bottom: 1px solid var(--card-border);
+  box-shadow: 0 4px 24px var(--shadow);
+}
+
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-logo .hl {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  list-style: none;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.nav-links button:hover { color: var(--text); background: var(--bg3); }
+.nav-links button.active {
+  color: var(--primary);
+  background: rgba(26,122,94,0.08);
+}
+
+[data-mode="dark"] .nav-links button.active {
+  background: rgba(6,182,212,0.1);
+}
+
+.nav-theme {
+  background: none;
+  border: 1px solid var(--border2);
+  color: var(--muted);
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.nav-theme:hover { color: var(--primary); border-color: var(--primary); }
+
+.mobile-btn {
+  display: none;
+  background: none;
+  border: 1px solid var(--border2);
+  color: var(--text);
+  padding: 0.4rem 0.65rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#mob-drawer {
+  display: none;
+  position: fixed;
+  top: var(--nav-h);
+  left: 0; right: 0;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  z-index: 99;
+  padding: 1rem;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+#mob-drawer.open { display: flex; }
+#mob-drawer button {
+  background: none; border: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem; color: var(--muted);
+  padding: 0.7rem 1rem;
+  border-radius: 8px; cursor: pointer;
+  text-align: left; transition: all 0.2s;
+}
+#mob-drawer button:hover, #mob-drawer button.active { color: var(--primary); background: rgba(16,185,129,0.06); }
+
+/* ═══════════════════════
+   LAYOUT
+═══════════════════════ */
+main { padding-top: var(--nav-h); }
+
+.section {
+  display: none;
+  min-height: calc(100vh - var(--nav-h));
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+}
+
+.section.active { display: block; }
+
+/* ═══════════════════════
+   SHARED COMPONENTS
+═══════════════════════ */
+.eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--grad);
+  border-radius: 2px;
+}
+
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-mode="dark"] .grad-text {
+  background: var(--grad-cyan);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-sub {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  max-width: 600px;
+  margin-bottom: 3rem;
+}
+
+.pill-separator {
+  width: 64px; height: 5px;
+  background: var(--grad);
+  border-radius: 999px;
+  margin-bottom: 2.5rem;
+}
+
+/* Glass card */
+.glass {
+  background: var(--card-bg);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 40px var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.glass:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 32px 64px var(--shadow), 0 0 0 1px var(--border2);
+}
+
+/* Tag */
+.tag {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(26,122,94,0.07);
+  color: var(--primary);
+  border: 1px solid rgba(26,122,94,0.18);
+  letter-spacing: 0.03em;
+}
+
+[data-mode="dark"] .tag {
+  background: rgba(6,182,212,0.1);
+  color: var(--primary);
+  border-color: rgba(6,182,212,0.22);
+}
+
+.tag-slate {
+  background: var(--bg3);
+  color: var(--muted);
+  border-color: var(--border);
+}
+
+.tag-amber {
+  background: rgba(251,191,36,0.08);
+  color: var(--amber1);
+  border-color: rgba(251,191,36,0.22);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+
+.btn-primary {
+  background: var(--grad);
+  color: white;
+  box-shadow: 0 4px 14px rgba(16,185,129,0.35);
+}
+
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(16,185,129,0.5); }
+
+[data-mode="dark"] .btn-primary {
+  background: var(--grad-cyan);
+  box-shadow: 0 4px 14px rgba(6,182,212,0.35);
+}
+
+[data-mode="dark"] .btn-primary:hover { box-shadow: 0 8px 24px rgba(6,182,212,0.5); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+}
+.btn-outline:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+
+.section-left-bar {
+  position: relative;
+  padding-left: 1.25rem;
+}
+.section-left-bar::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--grad);
+  border-radius: 3px;
+}
+
+/* ═══════════════════════
+   HOME / HERO
+═══════════════════════ */
+#home {
+  display: none;
+  padding-top: 0;
+}
+
+#home.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - var(--nav-h));
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.hero-available {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--primary);
+  border: 1px solid rgba(26,122,94,0.22);
+  background: rgba(26,122,94,0.06);
+  padding: 0.32rem 0.85rem;
+  border-radius: 999px;
+  margin-bottom: 1.75rem;
+  letter-spacing: 0.05em;
+}
+
+[data-mode="dark"] .hero-available {
+  color: var(--primary);
+  border-color: rgba(6,182,212,0.28);
+  background: rgba(6,182,212,0.08);
+}
+
+.hero-pulse {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.75)} }
+
+.hero-title {
+  font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-num .u { color: var(--primary); }
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.25rem;
+}
+
+/* Hero side card */
+.hero-card {
+  padding: 1.75rem;
+  position: sticky;
+  top: calc(var(--nav-h) + 1.5rem);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+.hc-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.dot-row { display: flex; gap: 5px; }
+.dot-row span { width: 9px; height: 9px; border-radius: 50%; }
+.dot-r { background: #ff5f57; }
+.dot-y { background: #febc2e; }
+.dot-g { background: #28c840; }
+
+.hc-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  margin-left: auto;
+}
+
+.hc-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.hc-row:last-of-type { border-bottom: none; }
+
+.hc-icon {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.hci-green { background: rgba(16,185,129,0.1); color: var(--primary-d); }
+.hci-cyan  { background: rgba(6,182,212,0.12); color: #0891b2; }
+.hci-amber { background: rgba(251,191,36,0.12); color: var(--amber1); }
+
+.hc-name { font-size: 0.86rem; font-weight: 500; }
+.hc-sub { font-family: 'DM Mono', monospace; font-size: 0.66rem; color: var(--muted); margin-top: 0.05rem; }
+
+.hc-footer {
+  margin-top: 1.25rem;
+  background: rgba(26,122,94,0.06);
+  border: 1px solid rgba(26,122,94,0.15);
+  border-radius: 10px;
+  padding: 0.85rem;
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--primary-d);
+  letter-spacing: 0.04em;
+}
+
+[data-mode="dark"] .hc-footer {
+  background: rgba(6,182,212,0.08);
+  border-color: rgba(6,182,212,0.18);
+  color: var(--primary);
+}
+
+/* ═══════════════════════
+   ACADEMIC SECTION
+═══════════════════════ */
+.academic-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.edu-card {
+  padding: 2rem;
+  position: relative;
+}
+
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--grad);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.edu-badge {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+  letter-spacing: 0.08em;
+  background: var(--grad);
+  color: white;
+}
+
+.edu-deg { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 0.4rem; }
+.edu-inst { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; }
+
+.sgpa-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.sgpa-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.sgpa-meta { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+
+.cert-list { display: flex; flex-direction: column; gap: 0.8rem; }
+
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+}
+
+.cert-item:hover { border-color: var(--primary); transform: translateX(4px); }
+
+.cert-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem;
+  background: var(--grad);
+  color: white;
+  flex-shrink: 0;
+}
+
+.cert-name { font-size: 0.88rem; font-weight: 500; }
+.cert-issuer { font-family: 'DM Mono', monospace; font-size: 0.66rem; color: var(--muted); margin-top: 0.1rem; }
+
+/* Coursework grid */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.course-chip {
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  text-align: center;
+  font-size: 0.83rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.course-chip:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════
+   PROJECTS SECTION
+═══════════════════════ */
+.proj-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.proj-card {
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.proj-card.flagship {
+  border-color: rgba(16,185,129,0.25);
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+[data-mode="dark"] .proj-card.flagship { border-color: rgba(6,182,212,0.2); }
+
+.proj-card.flagship::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--grad);
+}
+
+.proj-type {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.proj-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.proj-desc {
+  font-size: 0.87rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.proj-metrics {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.metric {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--primary);
+  background: rgba(26,122,94,0.06);
+  border: 1px solid rgba(26,122,94,0.15);
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+[data-mode="dark"] .metric {
+  background: rgba(6,182,212,0.08);
+  border-color: rgba(6,182,212,0.18);
+}
+
+.proj-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 1rem; }
+
+.proj-link {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.proj-link:hover { opacity: 1; }
+
+.proj-award {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  background: rgba(251,191,36,0.1);
+  color: var(--amber1);
+  border: 1px solid rgba(251,191,36,0.25);
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* ═══════════════════════
+   SKILLS SECTION
+═══════════════════════ */
+.skills-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.skill-category {
+  padding: 1.75rem;
+}
+
+.skill-cat-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skill-cat-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.skill-bar-list { display: flex; flex-direction: column; gap: 0.9rem; }
+
+.skill-bar-item { }
+.skill-bar-top { display: flex; justify-content: space-between; margin-bottom: 0.4rem; }
+.skill-name { font-size: 0.88rem; font-weight: 500; }
+.skill-pct { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+.skill-track {
+  height: 5px;
+  background: var(--bg3);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.skill-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--grad);
+  animation: grow 1.2s ease-out forwards;
+}
+
+[data-mode="dark"] .skill-fill { background: var(--grad-cyan); }
+
+@keyframes grow { from { width: 0; } }
+
+/* ═══════════════════════
+   EXPERIENCE SECTION
+═══════════════════════ */
+.timeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 3rem; }
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 160px 1px 1fr;
+  gap: 0 1.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.tl-item:last-child { padding-bottom: 0; }
+
+.tl-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-align: right;
+  padding-top: 0.2rem;
+  line-height: 1.5;
+}
+
+.tl-line {
+  position: relative;
+  background: var(--border);
+}
+
+.tl-line::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--grad);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.2);
+}
+
+.tl-body { padding-top: 0; }
+.tl-company { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.25rem; }
+.tl-role { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--primary); margin-bottom: 0.85rem; letter-spacing: 0.05em; }
+
+.tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.tl-bullets li {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.65;
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.tl-bullets li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-size: 0.7rem;
+  top: 0.2rem;
+}
+
+/* ═══════════════════════
+   ABOUT SECTION
+═══════════════════════ */
+.about-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-avatar {
+  text-align: center;
+}
+
+.avatar-wrap {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  background: var(--grad);
+  padding: 3px;
+  box-shadow: 0 0 0 6px rgba(16,185,129,0.1);
+}
+
+.avatar-inner {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  background: var(--bg3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  overflow: hidden;
+}
+
+.avatar-inner img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.avatar-inner .icon { color: var(--muted); }
+
+.about-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.about-role {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--primary);
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.social-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.social-link {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.social-link:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+.about-body {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 1.1rem;
+}
+
+.about-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.5rem; }
+
+/* ═══════════════════════
+   FOOTER
+═══════════════════════ */
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+/* ═══════════════════════
+   RESPONSIVE
+═══════════════════════ */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-card { display: none; }
+  .academic-grid { grid-template-columns: 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .proj-card.flagship { grid-column: span 1; grid-template-columns: 1fr; }
+  .skills-layout { grid-template-columns: 1fr; }
+  .about-layout { grid-template-columns: 1fr; }
+  .tl-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .tl-line { display: none; }
+  .tl-date { text-align: left; }
+  .course-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .mobile-btn { display: block; }
+  .nav-theme { display: none; }
+}
+
+/* Animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.7s ease forwards;
+}
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.3s; }
+.delay-3 { animation-delay: 0.45s; }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Subhajit <span class="hl">Halder</span></div>
+
+    <ul class="nav-links">
+      <li><button class="active" data-target="home">Home</button></li>
+      <li><button data-target="academic">Academic</button></li>
+      <li><button data-target="projects">Projects</button></li>
+      <li><button data-target="skills">Skills</button></li>
+      <li><button data-target="experience">Experience</button></li>
+      <li><button data-target="about">About</button></li>
+    </ul>
+
+    <div style="display:flex;gap:0.5rem;align-items:center;">
+      <button class="nav-theme" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"></i></button>
+      <button class="mobile-btn" id="mobToggle"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<div id="mob-drawer">
+  <button data-target="home">Home</button>
+  <button data-target="academic">Academic</button>
+  <button data-target="projects">Projects</button>
+  <button data-target="skills">Skills</button>
+  <button data-target="experience">Experience</button>
+  <button data-target="about">About</button>
+</div>
+
+<main>
+
+<!-- ─── HOME ─── -->
+<section class="section" id="home">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-available fade-up">
+        <span class="hero-pulse"></span>
+        B.Tech IT · Sem 3 · SGPA 8.29
+      </div>
+
+      <h1 class="hero-title fade-up delay-1">
+        Subhajit<br>
+        <span class="grad-text">Halder</span>
+      </h1>
+
+      <p class="hero-desc fade-up delay-1">
+        Systems & embedded developer, academic achiever, and open-source builder. Studying Information Technology at JGEC while building real hardware and software systems that solve real problems.
+      </p>
+
+      <div class="hero-actions fade-up delay-2">
+        <button class="btn btn-primary nav-btn" data-target="projects">View Projects <i class="fas fa-arrow-right"></i></button>
+        <button class="btn btn-outline nav-btn" data-target="academic">Academic Record</button>
+      </div>
+
+      <div class="hero-stats fade-up delay-3">
+        <div>
+          <div class="stat-num">8.29<span class="u">/10</span></div>
+          <div class="stat-label">Current SGPA</div>
+        </div>
+        <div>
+          <div class="stat-num">5<span class="u">+</span></div>
+          <div class="stat-label">Own Projects</div>
+        </div>
+        <div>
+          <div class="stat-num">4<span class="u"></span></div>
+          <div class="stat-label">Certifications</div>
+        </div>
+        <div>
+          <div class="stat-num">🏆<span class="u"></span></div>
+          <div class="stat-label">Competition Awards</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass hero-card fade-up delay-2">
+      <div class="hc-header">
+        <div class="dot-row">
+          <span class="dot-r"></span>
+          <span class="dot-y"></span>
+          <span class="dot-g"></span>
+        </div>
+        <span class="hc-title">PROFILE SNAPSHOT</span>
+      </div>
+
+      <div class="hc-row">
+        <div class="hc-icon hci-green"><i class="fas fa-graduation-cap"></i></div>
+        <div>
+          <div class="hc-name">B.Tech — IT</div>
+          <div class="hc-sub">JGEC · 2024–2028</div>
+        </div>
+      </div>
+      <div class="hc-row">
+        <div class="hc-icon hci-cyan"><i class="fas fa-microchip"></i></div>
+        <div>
+          <div class="hc-name">Embedded & IoT</div>
+          <div class="hc-sub">ESP32 · Raspberry Pi · Arduino</div>
+        </div>
+      </div>
+      <div class="hc-row">
+        <div class="hc-icon hci-green"><i class="fas fa-code"></i></div>
+        <div>
+          <div class="hc-name">Systems Programming</div>
+          <div class="hc-sub">C · C++ · Python · NASM</div>
+        </div>
+      </div>
+      <div class="hc-row">
+        <div class="hc-icon hci-amber"><i class="fas fa-trophy"></i></div>
+        <div>
+          <div class="hc-name">Innovation Expos</div>
+          <div class="hc-sub">Multiple 1st Place Awards</div>
+        </div>
+      </div>
+
+      <div class="hc-footer">✦ JALPAIGURI, WEST BENGAL · INDIA</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ACADEMIC ─── -->
+<section class="section" id="academic">
+  <div class="eyebrow">Academic Record</div>
+  <h2 class="section-title">Education &<br><span class="grad-text">Certifications</span></h2>
+  <div class="pill-separator"></div>
+
+  <div class="academic-grid">
+    <!-- Education card -->
+    <div class="glass edu-card">
+      <span class="edu-badge">CURRENT · ONGOING</span>
+      <div class="edu-deg">B.Tech — Information Technology</div>
+      <div class="edu-inst">Jalpaiguri Government Engineering College · 2024–2028</div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.25rem;">
+        <span class="tag">Information Technology</span>
+        <span class="tag-slate tag">West Bengal, India</span>
+        <span class="tag-slate tag">MAKAUT Affiliated</span>
+      </div>
+
+      <div class="sgpa-display">
+        <div class="sgpa-num">8.29</div>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--muted);">SGPA · Semester 3</div>
+          <div style="font-size:0.8rem;font-weight:500;color:var(--primary);margin-top:0.2rem;">Consistent academic performance</div>
+        </div>
+      </div>
+
+      <div style="margin-top:1.5rem;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.75rem;">Key Subjects</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+          <span class="tag">Data Structures & Algorithms</span>
+          <span class="tag">Operating Systems</span>
+          <span class="tag">Computer Networks</span>
+          <span class="tag">Digital Electronics</span>
+          <span class="tag">Database Systems</span>
+          <span class="tag">Discrete Mathematics</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certifications card -->
+    <div class="glass edu-card">
+      <span class="edu-badge">VERIFIED CERTIFICATIONS</span>
+      <div class="edu-deg" style="margin-bottom:1.25rem;">Professional Development</div>
+
+      <div class="cert-list">
+        <div class="cert-item">
+          <div class="cert-icon"><i class="fas fa-shield-halved"></i></div>
+          <div>
+            <div class="cert-name">Computer Forensics (CFCT+)</div>
+            <div class="cert-issuer">Udemy · 2024</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon"><i class="fas fa-terminal"></i></div>
+          <div>
+            <div class="cert-name">Advanced C/C++ Programming</div>
+            <div class="cert-issuer">Udemy · 2024</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon"><i class="fas fa-lock"></i></div>
+          <div>
+            <div class="cert-name">Cybersecurity Fundamentals</div>
+            <div class="cert-issuer">Udemy · 2024</div>
+          </div>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon"><i class="fab fa-python"></i></div>
+          <div>
+            <div class="cert-name">Python Advanced</div>
+            <div class="cert-issuer">GUVI · 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coursework -->
+  <div>
+    <div class="eyebrow" style="margin-bottom:0.75rem;">Relevant Coursework</div>
+    <div class="course-grid">
+      <div class="course-chip glass">Data Structures & Algorithms</div>
+      <div class="course-chip glass">Operating Systems</div>
+      <div class="course-chip glass">Computer Networks</div>
+      <div class="course-chip glass">Embedded Systems</div>
+      <div class="course-chip glass">Machine Learning</div>
+      <div class="course-chip glass">Digital Electronics</div>
+      <div class="course-chip glass">Database Systems</div>
+      <div class="course-chip glass">Object-Oriented Programming</div>
+      <div class="course-chip glass">System Design</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROJECTS ─── -->
+<section class="section" id="projects">
+  <div class="eyebrow">Own Projects</div>
+  <h2 class="section-title">Selected <span class="grad-text">Projects</span></h2>
+  <div class="pill-separator"></div>
+
+  <!-- 3 Software Projects (NOW FIRST) -->
+  <div class="eyebrow" style="margin-bottom:1rem;"><i class="fas fa-terminal"></i> Software & Systems Projects</div>
+  <div class="proj-grid" style="margin-bottom:2.5rem;">
+
+    <div class="glass proj-card">
+      <div class="proj-type">Systems Programming · C/C++ · Cross-Platform</div>
+      <div class="proj-title">Operating Environment (OE)</div>
+      <div class="proj-desc">Custom cross-platform shell with 15+ commands using a handcrafted Windows/Linux abstraction layer. Includes a built-in text editor and Shunting Yard math evaluator — zero external dependencies.</div>
+      <div class="proj-metrics">
+        <span class="metric">15+ commands</span>
+        <span class="metric">Zero deps</span>
+      </div>
+      <div class="proj-tags">
+        <span class="tag">C / C++</span>
+        <span class="tag-slate tag">Cross-Platform</span>
+        <span class="tag-slate tag">Shunting Yard</span>
+      </div>
+      <a href="https://github.com/Subhajit267" target="_blank" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+
+    <div class="glass proj-card">
+      <div class="proj-type">Networking · Distributed Systems · Algorithms</div>
+      <div class="proj-title">Network Routing Simulator (DVR &amp; LSR)</div>
+      <div class="proj-desc">Simulated Bellman-Ford (Distance Vector) and Dijkstra (Link State) routing algorithms across 10+ virtual nodes using multi-threaded Python TCP sockets with real-time convergence analysis.</div>
+      <div class="proj-metrics">
+        <span class="metric">10+ nodes</span>
+        <span class="metric">Real-time convergence</span>
+      </div>
+      <div class="proj-tags">
+        <span class="tag">Python</span>
+        <span class="tag-slate tag">TCP Sockets</span>
+        <span class="tag-slate tag">Multithreading</span>
+      </div>
+      <a href="https://github.com/Subhajit267" target="_blank" class="proj-link"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+
+    <div class="glass proj-card" style="grid-column:span 2;">
+      <div style="display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;">
+        <div>
+          <div class="proj-type">Computer Vision · AI/ML · Database Integration</div>
+          <div class="proj-title">Face Recognition Attendance &amp; Employee Management System</div>
+          <div class="proj-desc">Built a real-time face recognition system supporting 50+ users at ~90% accuracy using dlib's face_recognition library. Automated attendance logging with database integration and a modular, client-configurable architecture.</div>
+          <div class="proj-tags">
+            <span class="tag">Python</span>
+            <span class="tag">dlib</span>
+            <span class="tag-slate tag">OpenCV</span>
+            <span class="tag-slate tag">SQLite</span>
+            <span class="tag-slate tag">face_recognition</span>
+          </div>
+          <a href="https://github.com/Subhajit267" target="_blank" class="proj-link" style="margin-top:0.75rem;display:inline-flex;"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+        <div style="text-align:right;">
+          <div class="proj-metrics" style="justify-content:flex-end;">
+            <span class="metric">~90% accuracy</span>
+            <span class="metric">50+ users</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 2 Hardware Flagships (NOW SECOND) -->
+  <div class="eyebrow" style="margin-bottom:1rem;"><i class="fas fa-microchip"></i> Hardware Flagship Projects</div>
+  <div class="proj-grid" style="margin-bottom:2rem;">
+
+    <div class="glass proj-card flagship" style="grid-column:span 2;">
+      <div>
+        <div class="proj-award" style="margin-bottom:0.85rem;">🏆 1st Prize — Multiple Tech Expos &amp; Innovation Fairs</div>
+        <div class="proj-type">ESP32 · Embedded C · Bluetooth · Accessibility Engineering</div>
+        <div class="proj-title">SPHOORTI — Real-Time Speech to Braille Converter</div>
+        <div class="proj-desc">
+          Led a 4-member interdisciplinary team to design and build a real-time assistive communication device for visually impaired users. The system converts spoken language into Braille output through GPIO-driven solenoid actuators.
+        </div>
+        <div class="proj-tags">
+          <span class="tag">ESP32</span>
+          <span class="tag">MicroPython</span>
+          <span class="tag">GPIO</span>
+          <span class="tag">ReactJS</span>
+          <span class="tag">Bluetooth</span>
+          <span class="tag">Solenoid Drivers</span>
+        </div>
+        <a href="https://github.com/Subhajit267" target="_blank" class="proj-link"><i class="fab fa-github"></i> View on GitHub</a>
+      </div>
+      <div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.75rem;">Key Achievements</div>
+          <div style="display:flex;flex-direction:column;gap:0.6rem;">
+            <div style="font-size:0.86rem;"><span style="color:var(--primary);margin-right:0.5rem;">▸</span>~85–90% speech transcription accuracy in real-time</div>
+            <div style="font-size:0.86rem;"><span style="color:var(--primary);margin-right:0.5rem;">▸</span>Low-latency hardware-software pipeline integration</div>
+            <div style="font-size:0.86rem;"><span style="color:var(--primary);margin-right:0.5rem;">▸</span>GPIO solenoid driver circuitry for tactile Braille output</div>
+            <div style="font-size:0.86rem;"><span style="color:var(--primary);margin-right:0.5rem;">▸</span>Won multiple 1st prizes at technical fests and innovation expos</div>
+            <div style="font-size:0.86rem;"><span style="color:var(--primary);margin-right:0.5rem;">▸</span>Team lead — hardware development and system architecture</div>
+          </div>
+        </div>
+        <div class="proj-metrics">
+          <span class="metric">≥85% accuracy</span>
+          <span class="metric">Low latency</span>
+          <span class="metric">4-member team</span>
+          <span class="metric">Award-winning</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass proj-card flagship" style="grid-column:span 2;">
+      <div>
+        <div class="proj-type">Raspberry Pi · I2C · Sensor Fusion · ML Pipeline</div>
+        <div class="proj-title">IoT Music Mood Analysis &amp; Therapy System</div>
+        <div class="proj-desc">
+          Built a sensor-rich IoT system on Raspberry Pi that acquires physiological data via MAX30102 (heart rate/SpO₂), GSR sensor through ADS1115, and MPU6050 (motion), processes it through a real-time ML pipeline to classify mood states, and triggers targeted audio therapy.
+        </div>
+        <div class="proj-tags">
+          <span class="tag">Raspberry Pi</span>
+          <span class="tag">I2C Protocol</span>
+          <span class="tag">MAX30102</span>
+          <span class="tag">GSR Sensor</span>
+          <span class="tag">MPU6050</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">Python</span>
+        </div>
+        <a href="https://github.com/Subhajit267" target="_blank" class="proj-link"><i class="fab fa-github"></i> View on GitHub</a>
+      </div>
+      <div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.75rem;">Technical Highlights</div>
+          <div style="display:flex;flex-direction:column;gap:0.6rem;">
+            <div style="font-size:0.86rem;"><span style="color:var(--primary);margin-right:0.5rem;">▸</span>3-sensor physiological data fusion (heart rate, GSR, motion)</div>
+            <div style="font-size:0.86rem;"><span style="color:var(--primary);margin-right:0.5rem;">▸</span>Real-time I2C sensor interfacing and calibration</div>
+            <div style="font-size:0.86rem;"><span style="color:var(--primary);margin-right:0.5rem;">▸</span>ML mood classifier achieving ~75–85% accuracy</div>
+            <div style="font-size:0.86rem;"><span style="color:var(--primary);margin-right:0.5rem;">▸</span>Feedback loop: 3 consecutive detections → audio therapy trigger</div>
+            <div style="font-size:0.86rem;"><span style="color:var(--primary);margin-right:0.5rem;">▸</span>Modular architecture: live mode + simulation/test mode</div>
+          </div>
+        </div>
+        <div class="proj-metrics">
+          <span class="metric">75–85% accuracy</span>
+          <span class="metric">3-sensor fusion</span>
+          <span class="metric">Real-time I2C</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- View More footer -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.75rem;border-top:1px solid var(--border);flex-wrap:wrap;gap:0.5rem;">
+    <span style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--muted);">5 projects shown · more available</span>
+    <button id="openAcadProjects" style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--primary);background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.25);padding:0.4rem 1rem;border-radius:14px;cursor:pointer;display:inline-flex;align-items:center;gap:0.4rem;transition:all 0.2s;">
+      View More Projects <i class="fas fa-arrow-right"></i>
+    </button>
+  </div>
+
+</section>
+
+<!-- ═══ ALL PROJECTS DRAWER (Academic) ═══ -->
+<div id="acad-projects-drawer" style="position:fixed;inset:0;z-index:200;display:flex;pointer-events:none;opacity:0;transition:opacity 0.3s;">
+  <div id="acadDrawerBackdrop" style="position:absolute;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);"></div>
+  <div id="acadDrawerPanel" style="position:absolute;right:0;top:0;bottom:0;width:min(680px,95vw);background:var(--bg2);border-left:1px solid var(--border);overflow-y:auto;padding:2.5rem 2rem;transform:translateX(100%);transition:transform 0.35s cubic-bezier(0.22,1,0.36,1);display:flex;flex-direction:column;gap:1.1rem;">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:1.25rem;border-bottom:1px solid var(--border);position:sticky;top:-2.5rem;background:var(--bg2);margin:-2.5rem -2rem 0;padding:1.5rem 2rem;z-index:1;">
+      <div style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:800;">More Projects</div>
+      <button id="closeAcadProjects" style="width:36px;height:36px;border-radius:14px;background:var(--bg3);border:1px solid var(--border2);color:var(--muted);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;"><i class="fas fa-times"></i></button>
+    </div>
+
+    <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:0.6rem;margin-top:0.5rem;">
+      <i class="fas fa-terminal" style="color:var(--primary);"></i> Software & Systems
+      <span style="flex:1;height:1px;background:var(--border);display:block;"></span>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:1rem;padding:1rem;border-radius:14px;border:1px solid var(--border);background:var(--bg3);">
+      <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--primary);background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:0.2rem 0.5rem;flex-shrink:0;">04</span>
+      <div>
+        <div style="font-size:0.92rem;font-weight:700;margin-bottom:0.25rem;">AVL Tree Database Engine</div>
+        <div style="font-size:0.78rem;color:var(--muted);line-height:1.6;">Self-balancing AVL Tree based DB core in C/C++. O(log n) guaranteed for all operations on production-scale datasets.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.25rem;margin-top:0.5rem;"><span class="tag">C/C++</span><span class="tag-slate tag">DSA</span><span class="tag-slate tag">O(log n)</span></div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:1rem;padding:1rem;border-radius:14px;border:1px solid var(--border);background:var(--bg3);">
+      <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--primary);background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:0.2rem 0.5rem;flex-shrink:0;">05</span>
+      <div>
+        <div style="font-size:0.92rem;font-weight:700;margin-bottom:0.25rem;">High-Performance Template Vector</div>
+        <div style="font-size:0.78rem;color:var(--muted);line-height:1.6;">Optimized C++ template vector outperforming std::vector with custom memory management for embedded and large-scale environments.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.25rem;margin-top:0.5rem;"><span class="tag">C++</span><span class="tag-slate tag">Templates</span><span class="tag-slate tag">Memory</span></div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:1rem;padding:1rem;border-radius:14px;border:1px solid var(--border);background:var(--bg3);">
+      <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--primary);background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:0.2rem 0.5rem;flex-shrink:0;">06</span>
+      <div>
+        <div style="font-size:0.92rem;font-weight:700;margin-bottom:0.25rem;">CNN Handwriting Recognition</div>
+        <div style="font-size:0.78rem;color:var(--muted);line-height:1.6;">Convolutional Neural Network for real-time digit recognition trained on MNIST. Full pipeline from preprocessing to deployment.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.25rem;margin-top:0.5rem;"><span class="tag">Python</span><span class="tag-slate tag">TensorFlow</span><span class="tag-slate tag">CNN</span></div>
+      </div>
+    </div>
+
+    <div style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:0.6rem;margin-top:0.5rem;">
+      <i class="fas fa-microchip" style="color:var(--primary);"></i> Embedded & Hardware
+      <span style="flex:1;height:1px;background:var(--border);display:block;"></span>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:1rem;padding:1rem;border-radius:14px;border:1px solid var(--border);background:var(--bg3);">
+      <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--primary);background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:0.2rem 0.5rem;flex-shrink:0;">07</span>
+      <div>
+        <div style="font-size:0.92rem;font-weight:700;margin-bottom:0.25rem;">GRAINEYE — AI Sand Grain Analyzer</div>
+        <div style="font-size:0.78rem;color:var(--muted);line-height:1.6;">Raspberry Pi + CNN for real-time beach sand grain-size analysis. Results logged via custom map API for environmental monitoring.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.25rem;margin-top:0.5rem;"><span class="tag">Raspberry Pi</span><span class="tag-slate tag">CNN</span><span class="tag-slate tag">Python</span></div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:1rem;padding:1rem;border-radius:14px;border:1px solid var(--border);background:var(--bg3);">
+      <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--primary);background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:0.2rem 0.5rem;flex-shrink:0;">08</span>
+      <div>
+        <div style="font-size:0.92rem;font-weight:700;margin-bottom:0.25rem;">500W Pure Sine Wave Inverter</div>
+        <div style="font-size:0.78rem;color:var(--muted);line-height:1.6;">4047 &amp; 555 IC MOSFET-switched inverter with stable output, minimal heat loss, and full KiCad PCB design.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.25rem;margin-top:0.5rem;"><span class="tag">Analog</span><span class="tag-slate tag">MOSFET</span><span class="tag-slate tag">KiCad</span></div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:flex-start;gap:1rem;padding:1rem;border-radius:14px;border:1px solid var(--border);background:var(--bg3);">
+      <span style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--primary);background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:0.2rem 0.5rem;flex-shrink:0;">09</span>
+      <div>
+        <div style="font-size:0.92rem;font-weight:700;margin-bottom:0.25rem;">120W 4.1 Hi-Fi Amplifier</div>
+        <div style="font-size:0.78rem;color:var(--muted);line-height:1.6;">High-fidelity 4-channel analog amplifier with full tone controls, minimal distortion, and custom PCB design.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.25rem;margin-top:0.5rem;"><span class="tag">Analog</span><span class="tag-slate tag">TDA Series</span><span class="tag-slate tag">Audio</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ─── SKILLS ─── -->
+<section class="section" id="skills">
+  <div class="eyebrow">Technical Competencies</div>
+  <h2 class="section-title">Skills &<br><span class="grad-text">Expertise</span></h2>
+  <div class="pill-separator"></div>
+
+  <div class="skills-layout">
+
+    <div class="glass skill-category">
+      <div class="skill-cat-title"><i class="fas fa-code"></i> Programming Languages</div>
+      <div class="skill-bar-list">
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">C / C++</span><span class="skill-pct">95%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">Python</span><span class="skill-pct">90%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">NASM (x86 Assembly)</span><span class="skill-pct">70%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:70%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">Java</span><span class="skill-pct">75%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">Bash / Shell Scripting</span><span class="skill-pct">80%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass skill-category">
+      <div class="skill-cat-title"><i class="fas fa-microchip"></i> Embedded & IoT</div>
+      <div class="skill-bar-list">
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">Raspberry Pi / Linux SBC</span><span class="skill-pct">88%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">ESP32 / Arduino</span><span class="skill-pct">85%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">I2C / SPI / UART Protocols</span><span class="skill-pct">82%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:82%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">Circuit / PCB Design (KiCad)</span><span class="skill-pct">72%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:72%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">Sensor Calibration & Debugging</span><span class="skill-pct">85%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:85%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass skill-category">
+      <div class="skill-cat-title"><i class="fas fa-brain"></i> AI / ML & Computer Vision</div>
+      <div class="skill-bar-list">
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">scikit-learn</span><span class="skill-pct">80%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">OpenCV</span><span class="skill-pct">82%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:82%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">TensorFlow / PyTorch</span><span class="skill-pct">70%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:70%"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-cat-title" style="margin-top:1.5rem;"><i class="fas fa-network-wired"></i> Networking & Systems</div>
+      <div class="skill-bar-list">
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">TCP/IP & Socket Programming</span><span class="skill-pct">82%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:82%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">Linux / Bash Environment</span><span class="skill-pct">88%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:88%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="glass skill-category">
+      <div class="skill-cat-title"><i class="fas fa-database"></i> Data & Databases</div>
+      <div class="skill-bar-list">
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">MySQL / PostgreSQL</span><span class="skill-pct">78%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:78%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">SQLite</span><span class="skill-pct">82%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:82%"></div></div>
+        </div>
+        <div class="skill-bar-item">
+          <div class="skill-bar-top"><span class="skill-name">VBA / Excel Automation</span><span class="skill-pct">80%</span></div>
+          <div class="skill-track"><div class="skill-fill" style="width:80%"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-cat-title" style="margin-top:1.5rem;"><i class="fas fa-tools"></i> Tools & DevOps</div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:0.5rem;">
+        <span class="tag">Git / GitHub</span>
+        <span class="tag">CMake</span>
+        <span class="tag">Linux</span>
+        <span class="tag">WSL</span>
+        <span class="tag">Visual Studio</span>
+        <span class="tag">Arduino IDE</span>
+        <span class="tag">KiCad</span>
+        <span class="tag">Proteus</span>
+        <span class="tag">Cisco Packet Tracer</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── EXPERIENCE ─── -->
+<section class="section" id="experience">
+  <div class="eyebrow">Professional Experience</div>
+  <h2 class="section-title">Work &<br><span class="grad-text">Mentorship</span></h2>
+  <div class="pill-separator"></div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">Jan 2025<br>— Present<br><span style="color:var(--primary);font-weight:600;">Remote</span></div>
+      <div class="tl-line"></div>
+      <div class="tl-body glass" style="padding:1.5rem;border-radius:var(--radius);">
+        <div class="tl-company">Freelance Developer</div>
+        <div class="tl-role">CODE ANALYST & SYSTEMS DEVELOPER · INTERNATIONAL CLIENTS</div>
+        <ul class="tl-bullets">
+          <li>Delivered 35+ software systems, automation tools, and networking solutions for clients across USA, Germany, Saudi Arabia, and Australia</li>
+          <li>Built databases, network simulators, embedded systems, and automation tools with typical 2–5 day turnaround per project</li>
+          <li>Managed end-to-end delivery for 3–5 concurrent client projects — scoping, building, testing, and handoff</li>
+          <li>Worked in IoT, systems programming (C/C++), Python scripting, VBA/Excel automation, and network simulation domains</li>
+        </ul>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1rem;">
+          <span class="tag">C/C++</span>
+          <span class="tag">Python</span>
+          <span class="tag">VBA</span>
+          <span class="tag-slate tag">IoT</span>
+          <span class="tag-slate tag">International</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-date">Mar 2025<br>— Present<br><span style="color:var(--primary);font-weight:600;">Remote</span></div>
+      <div class="tl-line"></div>
+      <div class="tl-body glass" style="padding:1.5rem;border-radius:var(--radius);">
+        <div class="tl-company">DeepTechSolutions</div>
+        <div class="tl-role">CONSULTANT · MENTOR · DEVELOPER</div>
+        <ul class="tl-bullets">
+          <li>Developed 10+ network simulation and automation solutions using Cisco Packet Tracer, Python, and VBA</li>
+          <li>Built 5+ advanced Excel automation tools and ML-based scripts for practical business use cases</li>
+          <li>Mentored 15+ students in C++, Python, and networking concepts — translating theory into practical understanding</li>
+          <li>Covered IB, Cambridge, IGCSE, and university-level Computer Science and Electronics coursework</li>
+        </ul>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1rem;">
+          <span class="tag">Mentorship</span>
+          <span class="tag">Networking</span>
+          <span class="tag-slate tag">Cisco PT</span>
+          <span class="tag-slate tag">Excel/VBA</span>
+          <span class="tag-slate tag">ML</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="section" id="about">
+  <div class="eyebrow">Personal Profile</div>
+  <h2 class="section-title">About <span class="grad-text">Me</span></h2>
+  <div class="pill-separator"></div>
+
+  <div class="about-layout">
+    <div class="about-avatar">
+      <div class="avatar-wrap">
+        <div class="avatar-inner">
+          <img src="assets/IM1.jpeg" alt="Subhajit Halder" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <i class="fas fa-user icon" style="display:none;"></i>
+        </div>
+      </div>
+      <div class="about-name">Subhajit Halder</div>
+      <div class="about-role">Systems & Embedded Developer</div>
+
+      <div class="social-row">
+        <a href="https://github.com/Subhajit267" target="_blank" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/subhajit-halder" target="_blank" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:subhajithalder267@outlook.com" class="social-link" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:0.4rem;justify-content:center;">
+        <span class="tag">● Available</span>
+        <span class="tag-slate tag">India · Remote</span>
+      </div>
+    </div>
+
+    <div>
+      <p class="about-body">
+        I'm a 2nd-year B.Tech Information Technology student at Jalpaiguri Government Engineering College, driven by a deep interest in the intersection of software and hardware. My work spans C/C++ systems programming, embedded firmware, IoT deployments, and AI-assisted applications.
+      </p>
+      <p class="about-body">
+        Beyond classwork, I've channeled my learning into real projects — from a speech-to-Braille converter that won multiple competition awards, to a physiological sensor IoT system with a live ML pipeline. I believe engineering is learned by building.
+      </p>
+      <p class="about-body">
+        I also mentor students internationally in Computer Science, Electronics, and Networking, helping bridge the gap between textbook theory and practical implementation. My philosophy: understand the fundamentals, then apply them with precision.
+      </p>
+
+      <div class="about-chips">
+        <span class="tag">Systems Programming</span>
+        <span class="tag">Embedded Electronics</span>
+        <span class="tag">IoT Development</span>
+        <span class="tag">Machine Learning</span>
+        <span class="tag">Network Algorithms</span>
+        <span class="tag">PCB Design</span>
+        <span class="tag">Academic Mentorship</span>
+        <span class="tag">Open Source</span>
+      </div>
+
+      <div style="margin-top:2rem;display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <button class="btn btn-primary nav-btn" data-target="projects">See Projects <i class="fas fa-arrow-right"></i></button>
+        <a href="mailto:subhajithalder267@outlook.com" class="btn btn-outline">Get in Touch</a>
+      </div>
+
+      <div style="margin-top:2rem;" class="glass section-left-bar" style="padding:1.25rem 1.25rem 1.25rem 1.75rem;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:0.5rem;">Contact</div>
+        <div style="font-size:0.9rem;margin-bottom:0.3rem;"><i class="fas fa-envelope" style="color:var(--primary);margin-right:0.5rem;"></i>subhajithalder267@outlook.com</div>
+        <div style="font-size:0.9rem;margin-bottom:0.3rem;"><i class="fas fa-phone" style="color:var(--primary);margin-right:0.5rem;"></i>+91 70477 36124</div>
+        <div style="font-size:0.9rem;"><i class="fas fa-map-marker-alt" style="color:var(--primary);margin-right:0.5rem;"></i>Jalpaiguri, West Bengal, India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 Subhajit Halder &nbsp;·&nbsp; B.Tech Information Technology · JGEC &nbsp;·&nbsp; Academic Portfolio</p>
+</footer>
+
+<script>
+const sections = document.querySelectorAll('.section');
+const navBtns  = document.querySelectorAll('[data-target]');
+const drawer   = document.getElementById('mob-drawer');
+const mobToggle = document.getElementById('mobToggle');
+
+function showSection(id) {
+  sections.forEach(s => s.classList.remove('active'));
+  const t = document.getElementById(id);
+  if (t) { t.classList.add('active'); window.scrollTo(0, 0); }
+  navBtns.forEach(b => b.classList.toggle('active', b.dataset.target === id));
+  drawer.classList.remove('open');
+  if (mobToggle) mobToggle.innerHTML = '<i class="fas fa-bars"></i>';
+}
+
+navBtns.forEach(b => b.addEventListener('click', () => showSection(b.dataset.target)));
+
+mobToggle.addEventListener('click', () => {
+  const open = drawer.classList.toggle('open');
+  mobToggle.innerHTML = open ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+});
+
+// Theme toggle
+const themeBtn = document.getElementById('themeToggle');
+const html = document.documentElement;
+
+function applyTheme(m) {
+  html.setAttribute('data-mode', m);
+  themeBtn.innerHTML = m === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  localStorage.setItem('acad-theme', m);
+}
+
+themeBtn.addEventListener('click', () => {
+  applyTheme(html.getAttribute('data-mode') === 'dark' ? 'light' : 'dark');
+});
+
+const saved = localStorage.getItem('acad-theme');
+if (saved) applyTheme(saved);
+else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
+
+// Academic projects drawer
+const acadDrawer = document.getElementById('acad-projects-drawer');
+const acadDrawerPanel = document.getElementById('acadDrawerPanel');
+const openAcadBtn = document.getElementById('openAcadProjects');
+const closeAcadBtn = document.getElementById('closeAcadProjects');
+const acadBackdrop = document.getElementById('acadDrawerBackdrop');
+
+function openAcadDrawer() {
+  acadDrawer.style.pointerEvents = 'all';
+  acadDrawer.style.opacity = '1';
+  acadDrawerPanel.style.transform = 'translateX(0)';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAcadDrawer() {
+  acadDrawer.style.pointerEvents = 'none';
+  acadDrawer.style.opacity = '0';
+  acadDrawerPanel.style.transform = 'translateX(100%)';
+  document.body.style.overflow = '';
+}
+
+if (openAcadBtn) openAcadBtn.addEventListener('click', openAcadDrawer);
+if (closeAcadBtn) closeAcadBtn.addEventListener('click', closeAcadDrawer);
+if (acadBackdrop) acadBackdrop.addEventListener('click', closeAcadDrawer);
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeAcadDrawer();
+});
+
+showSection('home');
+</script>
+</body>
+</html>
